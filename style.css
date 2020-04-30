@@ -43,6 +43,29 @@ circle {
   padding-bottom: 50px;
 }
 
+.roster-container {
+  margin: 10px 5px;
+  float: left;
+  width: 100%;
+  color: gray;
+  padding-bottom: 50px;
+}
+
+.roster-container h4 {
+  margin: 0;
+  padding: 4;
+}
+
+.roster-container ul {
+  margin: 0;
+  padding: 0;
+}
+
+.roster-container p {
+  margin: 0;
+  padding: 0;
+}
+
 h3 {
   color: gray;
   margin: 0;

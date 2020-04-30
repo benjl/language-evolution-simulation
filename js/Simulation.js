@@ -15,6 +15,7 @@ Simulation.prototype.tick = function () {
   if (!this.paused) {
     this.model.step();
     this.drawAgents();
+    this.renderRoster();
   }
 };
 
@@ -32,6 +33,38 @@ Simulation.prototype.run = function () {
   }.bind(this);
 
   request();
+};
+
+Simulation.prototype.renderRoster = function () {
+  var roster = document.getElementById('roster');
+  var fragment = document.createDocumentFragment();
+  var islands = this.model.islands;
+  this.model.agents.forEach(function (key, idx) {
+    fragment.appendChild(
+      htmlToElement(
+        template('roster_template', {
+          anum: 'Agent ' + idx,
+          acolor: key.color,
+          vocab: buildVocabString(key.vocabulary),
+        })
+      )
+    );
+  });
+  
+  while (roster.firstChild) {
+    roster.removeChild(roster.firstChild);
+  }
+  
+  roster.appendChild(fragment);
+};
+
+function buildVocabString(vocab) {
+  vocabstr = '';
+  vocab.forEach(function (key) {
+    vocabstr += key.word;
+    vocabstr += ' ';
+  });
+  return vocabstr;
 };
 
 Simulation.prototype.drawAgents = function () {

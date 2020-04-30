@@ -11,8 +11,8 @@
   <p>with <a href="https://www.wikiwand.com/en/Agent-based_model">Agent Based Models</a>
   - <a href="http://github.com/fatiherikli/language-evolution-simulation">Source code on github</a></p>
   <svg id="canvas" xmlns="http://www.w3.org/2000/svg" width="510" height="420"></svg>
+  <button onclick="togglePause(simulation)">Pause</button>
   <div class="info">
-    <button onclick="togglePause(simulation)">Pause</button>
     <div id="stats"></div>
   </div>
 </div>
@@ -27,6 +27,12 @@
     <li>Without any mutation</li>
   </ul>
 </div>
+<div class="roster-container">
+  <h3>Roster</h3>
+  <ul id="roster"></ul>
+</div>
+
+
 <div class="event-log-container">
   <h3>Event Log</h3>
   <ul id="event-log"></ul>
@@ -37,6 +43,12 @@
     <h4>Most used word</h4> 
     <span class="word">{{= instance ? instance.word : 'N/A' }}</span>
     <span class="parent">{{= instance && instance.parent && instance.parent.word }}</span>
+  </div>
+</script>
+<script type="text/template" id="roster_template">
+  <div class="agent-roster">
+    <h4 style="color: {{= acolor }}">{{= anum}}</h3>
+    <p>Vocab: {{= vocab }}</p>
   </div>
 </script>
 <script src="js/Map.js"></script>
