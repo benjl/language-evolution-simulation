@@ -2,6 +2,7 @@ function Simulation(canvas, model) {
   this.canvas = canvas;
   this.model = model;
   this.gridPixelSize = 10;
+  this.paused = false;
 
   model.eventLog.onUpdate(
     this.onEventLogUpdate.bind(this)
@@ -11,8 +12,10 @@ function Simulation(canvas, model) {
 }
 
 Simulation.prototype.tick = function () {
-  this.model.step();
-  this.drawAgents();
+  if (!this.paused) {
+    this.model.step();
+    this.drawAgents();
+  }
 };
 
 Simulation.prototype.run = function () {

@@ -18,6 +18,11 @@ function isEqual(value) {
   };
 }
 
+function togglePause(sim) {
+    sim.paused = !sim.paused;
+    return 1;
+}
+
 var weightedRandom = function (spec) {
   var sum = 0, 
       random = Math.random();
