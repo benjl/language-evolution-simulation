@@ -61,7 +61,7 @@ Simulation.prototype.drawAgents = function () {
     ].join('');
 
     circle.setAttribute('r', gridPixelSize / 2 - 2);
-    circle.setAttribute('fill', 'black');
+    circle.setAttribute('fill', agent.color);
   });
 
   if (fragment.childElementCount) {

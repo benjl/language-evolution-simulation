@@ -16,6 +16,7 @@ function Agent(island, model, eventLog, counter) {
   this.vocabulary.forEach(function (word) {
     island.addWord(word);
   });
+  this.color = choiceRandom(__AGENT_COLORS__[island.code]);
 }
 
 Agent.LIVE = 1;
