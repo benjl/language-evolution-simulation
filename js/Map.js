@@ -50,10 +50,10 @@ var __POPULATION__ = {
 };
 
 var __ISLANDS__ = {
-  'A': ['Island A', '#4BACFF'],
-  'B': ['Island B', '#00C230'],
-  'C': ['Island C', '#F1958F'],
-  'D': ['Island D', '#d9a8e0'],
+  'A': ['Falafel Island', '#4BACFF'],
+  'B': ['Macaroni Island', '#00C230'],
+  'C': ['Soda Island', '#F1958F'],
+  'D': ['Salad Island', '#d9a8e0'],
 };
 
 var __INITIAL_WORDS__ = {

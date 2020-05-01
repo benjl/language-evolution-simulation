@@ -17,18 +17,18 @@ function Agent(island, model, eventLog, counter) {
     island.addWord(word);
   });
   this.color = choiceRandom(__AGENT_COLORS__[island.code]);
-  this.maxvocab = 50;
+  this.maxvocab = 30;
 }
 
 Agent.LIVE = 1;
 Agent.DEAD = 2;
 
 Agent.MUTATION_CHAIN = [
-  [0.85, 'NO_MUTATION'],
+  [0.87, 'NO_MUTATION'],
   [0.02, 'COMPOUND'],
   [0.04, 'CONST'],
   [0.04, 'VOWEL'],
-  [0.05, 'TRUNCATE'],
+  [0.03, 'TRUNCATE'],
 ];
 
 // Agent.MUTATION_CHAIN = [
@@ -158,6 +158,7 @@ Agent.prototype.learnWord = function (wordInstance) {
         this.addToVocabulary(wordInstance);
       break;
       }
+      break;
 
     case 'COMPOUND':
       var derived = wordInstance.compoundWith(
