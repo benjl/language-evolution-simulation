@@ -28,7 +28,7 @@ Simulation.prototype.run = function () {
   var request = function () {
     requestAnimationFrame(function () {
       this.tick();
-      setTimeout(request, 750);
+      setTimeout(request, 300);
     }.bind(this));
   }.bind(this);
 
