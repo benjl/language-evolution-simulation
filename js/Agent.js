@@ -3,6 +3,7 @@ function Agent(island, model, eventLog, counter) {
   this.position = null;
   this.model = model;
   this.id = Math.random();
+  this.name = Word.random(5, island).word;
   this.state = Agent.LIVE;
   this.inbox = null;
   this.eventLog = eventLog;

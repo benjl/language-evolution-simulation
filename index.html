@@ -9,7 +9,7 @@
 <div class="canvas-container">
   <h1>Language Evolution Simulation</h1>
   <p>with <a href="https://www.wikiwand.com/en/Agent-based_model">Agent Based Models</a>
-  - <a href="http://github.com/fatiherikli/language-evolution-simulation">Source code on github</a></p>
+  - <a href="http://github.com/fatiherikli/language-evolution-simulation">Source code on github</a> - <a href="https://github.com/benjl/language-evolution-simulation"> Forked by benjl </a></p>
   <svg id="canvas" xmlns="http://www.w3.org/2000/svg" width="510" height="420"></svg>
   <button onclick="togglePause(simulation)">Pause</button>
   <div class="info">
@@ -18,14 +18,16 @@
 </div>
 <div class="rules">
   <h3>Rules</h3>
-  If an agent intersect with another agent, picks a word 
-  from the own vocabulary and tells that. The neighborhood receives and adds that word into its vocabulary as
+  If an agent intersects with another agent, it picks a word 
+  from its own vocabulary and tells it to the other agent. The other agent receives and adds that word into its vocabulary as:
   <ul>
-    <li>Mutation of a vowel sound with 0.1 probability</li>
-    <li>Mutation of a const sound with 0.1 probability</li>
-    <li>Comparing with another word</li>
-    <li>Without any mutation</li>
+    <li>Mutation of a vowel sound (4% chance)</li>
+    <li>Mutation of a consonant sound (4% chance)</li>
+    <li>Concatenation with another word (2% chance)</li>
+    <li>Truncation of the word (3% chance)</li>
+    <li>Without any mutation (87% chance)</li>
   </ul>
+  An agent can have a maximum of 30 words in its vocabulary. After that, it will forget a random word to learn a new one.
 </div>
 <div class="roster-container">
   <h3>Roster</h3>

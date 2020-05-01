@@ -43,7 +43,7 @@ Simulation.prototype.renderRoster = function () {
     fragment.appendChild(
       htmlToElement(
         template('roster_template', {
-          anum: 'Agent ' + idx,
+          anum: key.name,
           acolor: key.color,
           vocab: buildVocabString(key.vocabulary),
         })
@@ -95,6 +95,7 @@ Simulation.prototype.drawAgents = function () {
 
     circle.setAttribute('r', gridPixelSize / 2 - 2);
     circle.setAttribute('fill', agent.color);
+    
   });
 
   if (fragment.childElementCount) {
