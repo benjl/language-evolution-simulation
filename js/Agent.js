@@ -119,9 +119,6 @@ Agent.prototype.readAndReply = function () {
 
   this.sender.learnWord(reply);
   this.learnWord(this.inbox);
-
-  this.counter.count(reply.island.code, reply.word);
-  this.counter.count(this.inbox.island.code, this.inbox.word);
   
   this.inbox = null;
   this.sender = null;

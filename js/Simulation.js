@@ -16,6 +16,7 @@ Simulation.prototype.tick = function () {
     this.model.step();
     this.drawAgents();
     this.renderRoster();
+    this.renderStats();
   }
 };
 
@@ -212,8 +213,6 @@ Simulation.prototype.onEventLogUpdate = function (event, instance) {
     logEntry.appendChild(fragment);
   }
   eventLogElement.insertBefore(logEntry, eventLogElement.firstChild);
-
-  this.renderStats();
 };
 
 Simulation.prototype.renderStats = function () {
@@ -221,15 +220,14 @@ Simulation.prototype.renderStats = function () {
   var fragment = document.createDocumentFragment();
   var islands = this.model.islands;
   Object.keys(__ISLANDS__).forEach(function (key) {
+    var topWords = this.model.counter.mostOccurrence(key);
     var islandMeta = __ISLANDS__[key];
     fragment.appendChild(
       htmlToElement(
         template('island_stats_template', {
           name: islandMeta[0],
           color: islandMeta[1],
-          instance: islands[key].words[
-            this.model.counter.mostOccurrence(key)
-          ]
+          top: topWords ? topWords : null,
         })
       )
     );

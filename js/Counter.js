@@ -4,7 +4,11 @@ function Counter(size) {
   this.payload = {};
 }
 
-Counter.prototype.count = function (key, item, payload) {
+Counter.prototype.zero = function () {
+  this.table = {};
+}
+
+Counter.prototype.count = function (key, item) {
   var table = this.table;
 
   if (!table[key]) {
@@ -12,22 +16,16 @@ Counter.prototype.count = function (key, item, payload) {
   };
 
   table[key].push(item);
-
-  if (table[key].length >= this.size) {
-    table[key].shift();
-  }
 };
 
 Counter.prototype.mostOccurrence = function (key) {
   var items = this.table[key];
 
   if (!items) {
-    return null;
+    return [[null, null], [null, null], [null, null], [null, null], [null, null]];
   }
 
   var modeMap = {};
-  var maxEl = items[0], 
-      maxCount = 1;
 
   for (var i = 0; i < items.length; i++) {
     var el = items[i];
@@ -36,12 +34,20 @@ Counter.prototype.mostOccurrence = function (key) {
     } else {
       modeMap[el]++;  
     }
-    
-    if(modeMap[el] > maxCount) {
-      maxEl = el;
-      maxCount = modeMap[el];
-    }
   }
-
-  return maxEl;
+  
+  var sortThis = [];
+  for (var w in modeMap) {
+    sortThis.push([w, modeMap[w]]);
+  }
+  sortThis.sort(function (a, b) {
+    return a[1] - b[1];
+  });
+  sortThis.reverse();
+  
+  for (sortThis.length; sortThis.length < 5;) {
+    sortThis.push([null, null]);
+  }
+  
+  return sortThis;
 }

@@ -32,9 +32,12 @@ Model.prototype.setup = function () {
 
 Model.prototype.step = function () {
   this.iteration++;
-
+  this.counter.zero();
   this.agents.forEach(function (agent) {
     agent.step();
+    agent.vocabulary.forEach(function (wrd) {
+      agent.counter.count(agent.island.code, wrd.word);
+    });
   });
 
 };
