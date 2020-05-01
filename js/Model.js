@@ -1,6 +1,6 @@
 function Model(size) {
-  this.width = 51;
-  this.height = 42;
+  this.width = 96;
+  this.height = 49;
   this.iteration = -1;
   this.islands = [];
   this.agents = [];
