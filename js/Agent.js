@@ -17,6 +17,7 @@ function Agent(island, model, eventLog, counter) {
     island.addWord(word);
   });
   this.color = choiceRandom(__AGENT_COLORS__[island.code]);
+  this.maxvocab = 50;
 }
 
 Agent.LIVE = 1;
@@ -139,6 +140,11 @@ Agent.prototype.addToVocabulary = function (instance) {
   this.island.addWord(instance);
 };
 
+Agent.prototype.removeFromVocabulary = function (instance) {
+    this.vocabulary = this.vocabulary.filter(w => w.word != instance.word);
+    // this.island.checkWordDead(instance);
+}
+
 Agent.prototype.learnWord = function (wordInstance) {
   var words = this.vocabulary.map(attributeGetter('word'));
   var exists = words.indexOf(wordInstance.word) > -1;
@@ -146,28 +152,38 @@ Agent.prototype.learnWord = function (wordInstance) {
   switch (action) {
     case 'NO_MUTATION':
       if (!exists) {
+        if (this.vocabulary.length == this.maxvocab) {
+          this.removeFromVocabulary(choiceRandom(this.vocabulary));
+        }
         this.addToVocabulary(wordInstance);
-      }
       break;
+      }
 
     case 'COMPOUND':
       var derived = wordInstance.compoundWith(
         choiceRandom(this.vocabulary),
         this.island
       );
-
       this.eventLog.add(EventLog.NEW, derived);
-
+      if (this.vocabulary.length == this.maxvocab) {
+        this.removeFromVocabulary(choiceRandom(this.vocabulary));
+      }
       return this.addToVocabulary(derived);
 
     case 'CONST':
       var derived = wordInstance.mutateConst(this.island);
       this.eventLog.add(EventLog.NEW, derived);
+      if (this.vocabulary.length == this.maxvocab) {
+        this.removeFromVocabulary(choiceRandom(this.vocabulary));
+      }
       return this.addToVocabulary(derived);
 
     case 'VOWEL':
       var derived = wordInstance.mutateVowel(this.island);
       this.eventLog.add(EventLog.NEW, derived);
+      if (this.vocabulary.length == this.maxvocab) {
+        this.removeFromVocabulary(choiceRandom(this.vocabulary));
+      }
       return this.addToVocabulary(derived);
   }
 };
