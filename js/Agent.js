@@ -25,11 +25,11 @@ Agent.LIVE = 1;
 Agent.DEAD = 2;
 
 Agent.MUTATION_CHAIN = [
-  [0.87, 'NO_MUTATION'],
-  [0.02, 'COMPOUND'],
-  [0.04, 'CONST'],
-  [0.04, 'VOWEL'],
-  [0.03, 'TRUNCATE'],
+  [0.987, 'NO_MUTATION'],
+  [0.002, 'COMPOUND'],
+  [0.004, 'CONST'],
+  [0.004, 'VOWEL'],
+  [0.003, 'TRUNCATE'],
 ];
 
 // Agent.MUTATION_CHAIN = [
