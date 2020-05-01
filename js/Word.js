@@ -82,3 +82,18 @@ Word.prototype.mutateVowel = function (island) {
 Word.prototype.mutateConst = function (island) {
   return this.mutateWord(Word.CONSTS, island);
 };
+
+Word.prototype.truncate = function (island) {
+  var word = this.word;
+  var truncateEnd = (Math.random() > 0.5);
+  var truncateAmnt = Math.ceil(Math.random() * (word.length / 2));
+  if (truncateEnd) {
+    word = word.slice(0, word.length + 1 - truncateAmnt);
+  } else {
+    word = word.slice(truncateAmnt);
+  }
+  if (word.length < 3) {
+    word = this.word.slice(0, 3);
+  }
+  return new Word(word, island, this);
+}

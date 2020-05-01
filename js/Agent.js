@@ -24,10 +24,11 @@ Agent.LIVE = 1;
 Agent.DEAD = 2;
 
 Agent.MUTATION_CHAIN = [
-  [0.9, 'NO_MUTATION'],
+  [0.85, 'NO_MUTATION'],
   [0.02, 'COMPOUND'],
   [0.04, 'CONST'],
   [0.04, 'VOWEL'],
+  [0.05, 'TRUNCATE'],
 ];
 
 // Agent.MUTATION_CHAIN = [
@@ -142,7 +143,6 @@ Agent.prototype.addToVocabulary = function (instance) {
 
 Agent.prototype.removeFromVocabulary = function (instance) {
     this.vocabulary = this.vocabulary.filter(w => w.word != instance.word);
-    // this.island.checkWordDead(instance);
 }
 
 Agent.prototype.learnWord = function (wordInstance) {
@@ -181,6 +181,18 @@ Agent.prototype.learnWord = function (wordInstance) {
     case 'VOWEL':
       var derived = wordInstance.mutateVowel(this.island);
       this.eventLog.add(EventLog.NEW, derived);
+      if (this.vocabulary.length == this.maxvocab) {
+        this.removeFromVocabulary(choiceRandom(this.vocabulary));
+      }
+      return this.addToVocabulary(derived);
+    
+    case 'TRUNCATE':
+      var derived = wordInstance.truncate(this.island);
+      if (words.indexOf(derived.word) > -1) {
+        break;
+      }
+      this.eventLog.add(EventLog.NEW, derived);
+      console.log('Truncated ' + wordInstance.word + ' to ' + derived.word);
       if (this.vocabulary.length == this.maxvocab) {
         this.removeFromVocabulary(choiceRandom(this.vocabulary));
       }
