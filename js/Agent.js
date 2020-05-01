@@ -193,7 +193,6 @@ Agent.prototype.learnWord = function (wordInstance) {
         break;
       }
       this.eventLog.add(EventLog.NEW, derived);
-      console.log('Truncated ' + wordInstance.word + ' to ' + derived.word);
       if (this.vocabulary.length == this.maxvocab) {
         this.removeFromVocabulary(choiceRandom(this.vocabulary));
       }
