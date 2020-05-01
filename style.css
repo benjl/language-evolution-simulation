@@ -44,11 +44,16 @@ circle {
 }
 
 .roster-container {
-  margin: 10px 5px;
+  margin: 0px 0px;
   float: left;
   width: 100%;
   color: gray;
   padding-bottom: 50px;
+}
+
+.roster-container ul {
+  padding-left: 0px;
+  list-style-type: none;
 }
 
 .roster-container h4 {
@@ -56,9 +61,8 @@ circle {
   padding: 4;
 }
 
-.roster-container ul {
-  margin: 0;
-  padding: 0;
+.roster-container li {
+  height: 170px;
 }
 
 .roster-container p {
@@ -148,3 +152,10 @@ p {
 a {
   color: black;
 }
+
+td {
+  vertical-align: top;
+  width: 50%
+}
+
+

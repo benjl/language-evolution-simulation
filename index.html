@@ -29,16 +29,21 @@
   </ul>
   An agent can have a maximum of 30 words in its vocabulary. After that, it will forget a random word to learn a new one.
 </div>
-<div class="roster-container">
+<table><tr>
+<td><div class="roster-container">
   <h3>Roster</h3>
   <ul id="roster"></ul>
-</div>
+</div></td>
 
-
-<div class="event-log-container">
+<td><div class="event-log-container">
   <h3>Event Log</h3>
   <ul id="event-log"></ul>
-</div>
+</div></td>
+</tr></table>
+
+
+
+
 <script type="text/template" id="island_stats_template">
   <div class="island-stats">
     <h3 style="color: {{= color }}">{{= name }}</h3>
@@ -48,10 +53,10 @@
   </div>
 </script>
 <script type="text/template" id="roster_template">
-  <div class="agent-roster">
+  <li class="agent-roster">
     <h4 style="color: {{= acolor }}">{{= anum}}</h3>
-    <p>Vocab: {{= vocab }}</p>
-  </div>
+    Vocab: {{= vocab }}
+  </li>
 </script>
 <script src="js/Map.js"></script>
 <script src="js/Island.js"></script>
