@@ -36,11 +36,11 @@ Word.random = function (length, island) {
 };
 
 Word.prototype.compoundWith = function (wordInstance, island) {
-  var left = this.word.slice(
+  var left = this.word.slice(0, 
     Math.floor(this.word.length / 2)
   );
 
-  var right = this.word.slice(
+  var right = wordInstance.word.slice(
     Math.floor(this.word.length / 2)
   );
 
