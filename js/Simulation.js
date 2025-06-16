@@ -206,6 +206,8 @@ Simulation.prototype.colorizeWord = function (instance) {
 };
 
 Simulation.prototype.onEventLogUpdate = function (event, instance) {
+  if (this.turboMult < 1)
+    return;
   var eventLogElement = document.getElementById('event-log');
   var logEntry = document.createElement('li');
   if (instance.compoundOf) {
