@@ -214,6 +214,9 @@ Simulation.prototype.onEventLogUpdate = function (event, instance) {
     logEntry.appendChild(fragment);
   }
   eventLogElement.insertBefore(logEntry, eventLogElement.firstChild);
+  if (eventLogElement.children.length > 100) {
+    eventLogElement.children[eventLogElement.children.length-1].remove();
+  }
 };
 
 Simulation.prototype.renderStats = function () {
