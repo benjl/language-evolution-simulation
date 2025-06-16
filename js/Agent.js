@@ -135,8 +135,10 @@ Agent.prototype.receiveMessage = function (message, sender) {
 };
 
 Agent.prototype.addToVocabulary = function (instance) {
-  this.vocabulary.push(instance);
-  this.island.addWord(instance);
+  if (this.vocabulary.indexOf(instance) <= -1) {
+    this.vocabulary.push(instance);
+	this.island.addWord(instance);
+  }
 };
 
 Agent.prototype.removeFromVocabulary = function (instance) {
