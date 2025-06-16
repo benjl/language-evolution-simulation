@@ -61,7 +61,7 @@ Agent.prototype.getNeighborhoods = function () {
 };
 
 Agent.prototype.step = function () {
-  if (this.isOnGate()) {
+  if (this.isOnGate() && onActiveGate(this.position, this.model.iteration)) {
     var targetGate = findTargetGate(this.island.code, this.position);
     var island = this.model.islands[targetGate.islandCode];
     this.position = targetGate.position;
@@ -119,7 +119,7 @@ Agent.prototype.talk = function (recipient) {
     recipient
   );
   if (this.nativeIsland !== recipient.nativeIsland) {
-    if (similarity(recipient.vocabulary, this.vocabulary) > 0.7) {
+    if (similarity(recipient.vocabulary, this.vocabulary) > 0.5) {
 	  recipient.assimilateTo(this);
     }
   }

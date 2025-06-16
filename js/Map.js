@@ -150,6 +150,18 @@ var __GATES__ = {
    '9': ['E', 'F'],
 };
 
+var __GATE_OPENING__ = {
+  '1': 250,
+  '2': 300,
+  '3': 5000,
+  '4': 6500,
+  '5': 400,
+  '6': 500,
+  '7': 350,
+  '8': 4000,
+  '9': 4500,
+}
+
 function mooreNeighborhood(index) {
   var row = Math.floor(index / WIDTH);
   var column = index % WIDTH;
@@ -213,6 +225,13 @@ function getGates(indicator) {
   }).filter(
     Boolean
   );
+}
+
+function onActiveGate(pos, iter) {
+  if (!isGate(pos[0], pos[1]))
+    return false;
+  if (iter >= __GATE_OPENING__[getIndicator(pos[0], pos[1])])
+    return true
 }
 
 function findTargetGate(sourceIsland, position) {

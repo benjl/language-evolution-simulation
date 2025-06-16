@@ -4,6 +4,8 @@ function Simulation(canvas, model) {
   this.gridPixelSize = 6;
   this.paused = false;
   this.fast = false;
+  this.turboMult = 1;
+  this.drawnBridges = [];
 
   model.eventLog.onUpdate(
     this.onEventLogUpdate.bind(this)
@@ -15,9 +17,12 @@ function Simulation(canvas, model) {
 Simulation.prototype.tick = function () {
   if (!this.paused) {
     this.model.step();
-    this.drawAgents();
-    this.renderRoster();
-    this.renderStats();
+    if (this.turboMult > 0.001) {
+      this.drawBridges();
+      this.drawAgents();
+      this.renderRoster();
+      this.renderStats();
+    }
   }
 };
 
@@ -30,7 +35,7 @@ Simulation.prototype.run = function () {
   var request = function () {
     requestAnimationFrame(function () {
       this.tick();
-      setTimeout(request, this.fast ? 30 : 300);
+      setTimeout(request, this.fast ? 30*this.turboMult : 300*this.turboMult);
     }.bind(this));
   }.bind(this);
 
@@ -140,21 +145,26 @@ Simulation.prototype.drawBridges = function () {
   var model = this.model,
       canvas = this.canvas,
       gridPixelSize = this.gridPixelSize,
-      center = gridPixelSize / 2;
+      center = gridPixelSize / 2,
+      drawnBridges = this.drawnBridges;
 
   Object.keys(__GATES__).forEach(function (indicator) {
-    var gates = getGates(indicator);
-    var source = gates[0];
-    var target = gates[1];
+    // console.log(model.iteration, __GATE_OPENING__[indicator]);
+    if (model.iteration >= __GATE_OPENING__[indicator] && drawnBridges.indexOf(indicator) <= -1) {
+      drawnBridges.push(indicator);
+      var gates = getGates(indicator);
+      var source = gates[0];
+      var target = gates[1];
 
-    var line = createSvgElement('line');
-    line.setAttribute('x1', source[0] * gridPixelSize + center);
-    line.setAttribute('y1', source[1] * gridPixelSize + center);
-    line.setAttribute('x2', target[0] * gridPixelSize + center);
-    line.setAttribute('y2', target[1] * gridPixelSize + center);
-    line.setAttribute('stroke-width', 1);
-    line.setAttribute('stroke', 'gray');
-    canvas.appendChild(line);
+      var line = createSvgElement('line');
+      line.setAttribute('x1', source[0] * gridPixelSize + center);
+      line.setAttribute('y1', source[1] * gridPixelSize + center);
+      line.setAttribute('x2', target[0] * gridPixelSize + center);
+      line.setAttribute('y2', target[1] * gridPixelSize + center);
+      line.setAttribute('stroke-width', 1);
+      line.setAttribute('stroke', 'gray');
+      canvas.appendChild(line);
+    }
   });
 };
 

@@ -38,6 +38,13 @@ function toggleFFW(sim) {
 	return 1;
 }
 
+function toggleTurbo(sim) {
+  if (sim.turboMult > 0.001)
+    sim.turboMult = 0.001
+  else if (sim.turboMult < 1)
+    sim.turboMult = 1
+}
+
 var weightedRandom = function (spec) {
   var sum = 0, 
       random = Math.random();
