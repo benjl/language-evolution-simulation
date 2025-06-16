@@ -1,7 +1,7 @@
 function Simulation(canvas, model) {
   this.canvas = canvas;
   this.model = model;
-  this.gridPixelSize = 10;
+  this.gridPixelSize = 6;
   this.paused = false;
   this.fast = false;
 
@@ -95,7 +95,7 @@ Simulation.prototype.drawAgents = function () {
       'px)',
     ].join('');
 
-    circle.setAttribute('r', gridPixelSize / 2 - 2);
+    circle.setAttribute('r', gridPixelSize / 2 - 1);
     circle.setAttribute('fill', agent.color);
     
   });
