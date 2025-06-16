@@ -6,12 +6,13 @@ function Word(word, island, parent, compoundOf) {
 }
 
 Word.VOWELS = [
-  'a', 'e', 'ı', 'i', 'u', 'ü', 'ö', 'o'
+  'a', 'e', 'ı', 'i', 'u', 'ü', 'ö', 'o', 'é', 'ù', 'à', 'ì', 'õ', 'ã'
 ];
 
 Word.CONSTS = [
-  'b', 'c', 'd', 'f', 'g', 'ğ', 'h', 'j', 'k', 'l', 
-  'm', 'n', 'p', 'r', 's', 'ş', 't', 'v', 'y', 'z'
+  'b', 'c', 'd', 'f', 'g', 'w', 'h', 'j', 'k', 'l', 
+  'm', 'n', 'p', 'r', 's', 'ş', 't', 'v', 'y', 'z',
+  'č'
 ];
 
 Word.random = function (length, island) {
