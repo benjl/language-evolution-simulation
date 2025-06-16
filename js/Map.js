@@ -99,7 +99,7 @@ var __MAP__ =
 var WIDTH = 192;
 
 var __POPULATION__ = {
-  'A': 48,
+  'A': 40,
   'B': 40,
   'C': 40,
   'D': 60,
@@ -228,7 +228,7 @@ function getGates(indicator) {
 }
 
 function onActiveGate(pos, iter) {
-  if (!isGate(pos[0], pos[1]))
+  if (!isGate(pos[0], pos[1]) || Math.random() < 0.99)
     return false;
   if (iter >= __GATE_OPENING__[getIndicator(pos[0], pos[1])])
     return true

@@ -19,7 +19,7 @@ function Agent(island, model, eventLog, counter) {
     island.addWord(word);
   });
   this.color = choiceRandom(__AGENT_COLORS__[island.code]);
-  this.maxvocab = 30;
+  this.maxvocab = 100;
 }
 
 Agent.LIVE = 1;
