@@ -18,6 +18,16 @@ function isEqual(value) {
   };
 }
 
+function similarity(vocab, otherVocab) {
+  var words = vocab.map(attributeGetter('word'));
+  var otherWords = otherVocab.map(attributeGetter('word'));
+  var sharedWordList = words.filter(function (word) {
+	return otherWords.indexOf(word) > -1;
+  });
+  // console.log(sharedWordList.length / words.length);
+  return sharedWordList.length / words.length;
+}
+
 function togglePause(sim) {
     sim.paused = !sim.paused;
     return 1;

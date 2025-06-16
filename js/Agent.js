@@ -1,5 +1,6 @@
 function Agent(island, model, eventLog, counter) {
   this.island = island;
+  this.nativeIsland = island;
   this.position = null;
   this.model = model;
   this.id = Math.random();
@@ -106,11 +107,22 @@ Agent.prototype.step = function () {
   
 };
 
+Agent.prototype.assimilateTo = function (other) {
+  this.nativeIsland = other.nativeIsland;
+  this.color = choiceRandom(__AGENT_COLORS__[other.nativeIsland.code]);
+  // console.log(`${this.name} assimilated to ${other.name}'s island ${other.nativeIsland.code}`);
+}
+
 Agent.prototype.talk = function (recipient) {
   this.sendMessage(
     choiceRandom(this.vocabulary),
     recipient
   );
+  if (this.nativeIsland !== recipient.nativeIsland) {
+    if (similarity(recipient.vocabulary, this.vocabulary) > 0.7) {
+	  recipient.assimilateTo(this);
+    }
+  }
 
 };
 
