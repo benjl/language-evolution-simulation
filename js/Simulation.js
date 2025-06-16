@@ -222,6 +222,8 @@ Simulation.prototype.renderStats = function () {
   var islands = this.model.islands;
   Object.keys(__ISLANDS__).forEach(function (key) {
     var topWords = this.model.counter.mostOccurrence(key);
+    var nativeCount = this.model.counter.nativePop(this.model.agents, key);
+    var localCount = this.model.counter.localPop(this.model.agents, key);
     var islandMeta = __ISLANDS__[key];
     fragment.appendChild(
       htmlToElement(
@@ -229,6 +231,8 @@ Simulation.prototype.renderStats = function () {
           name: islandMeta[0],
           color: islandMeta[1],
           top: topWords ? topWords : null,
+          pop: nativeCount,
+          lpop: localCount,
         })
       )
     );

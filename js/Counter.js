@@ -18,6 +18,18 @@ Counter.prototype.count = function (key, item) {
   table[key].push(item);
 };
 
+Counter.prototype.nativePop = function (agentList, isle) {
+  return agentList.filter(function (a) {
+    return a.nativeIsland.code == isle;
+  }).length;
+}
+
+Counter.prototype.localPop = function (agentList, isle) {
+  return agentList.filter(function (a) {
+    return a.island.code === isle;
+  }).length;
+}
+
 Counter.prototype.mostOccurrence = function (key) {
   var items = this.table[key];
 
