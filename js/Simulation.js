@@ -3,6 +3,7 @@ function Simulation(canvas, model) {
   this.model = model;
   this.gridPixelSize = 10;
   this.paused = false;
+  this.fast = false;
 
   model.eventLog.onUpdate(
     this.onEventLogUpdate.bind(this)
@@ -29,7 +30,7 @@ Simulation.prototype.run = function () {
   var request = function () {
     requestAnimationFrame(function () {
       this.tick();
-      setTimeout(request, 300);
+      setTimeout(request, this.fast ? 30 : 300);
     }.bind(this));
   }.bind(this);
 

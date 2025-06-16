@@ -23,6 +23,11 @@ function togglePause(sim) {
     return 1;
 }
 
+function toggleFFW(sim) {
+	sim.fast = !sim.fast
+	return 1;
+}
+
 var weightedRandom = function (spec) {
   var sum = 0, 
       random = Math.random();
